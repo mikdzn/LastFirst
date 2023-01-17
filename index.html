@@ -1,46 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <title>addContact.html</title>
- <link rel = "stylesheet"
-  type = "text/css"
-  href = "contact.css" />
-</head>
-<body>
-
- <?php
- //read data from form
- $lName = filter_input(INPUT_POST, "lName");
- $fName = filter_input(INPUT_POST, "fName");
- $email = filter_input(INPUT_POST, "email");
- $phone = filter_input(INPUT_POST, "phone");
- //print form results to user
- print <<< HERE
- <h1>Thanks!</h1>
- <p>
-  Your spam will be arriving shortly.
- </p>
- <p>
- first name: $fName <br />
- last name: $lName <br />
- email: $email <br />
- phone: $phone
- </p>
-HERE;
- //generate output for text file
- $output = <<< HERE
-first: $fName
-last: $lName
-email: $email
-phone: $phone
-HERE;
- //open file for output
- $fp = fopen("contacts.txt", "a");
- //write to the file
- fwrite($fp, $output);
- fclose($fp);
- ?>
-
-</body>
-</html>
+<h1>Contact Form</h1>
+<form id="contact_form" name="contact_form" method="post">
+    <div class="mb-5 row">
+        <div class="col">
+            <label>First Name</label>
+            <input type="text" required maxlength="50" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="col">
+            <label>Last Name</label>
+            <input type="text" required maxlength="50" class="form-control" id="last_name" name="last_name">
+        </div>
+    </div>
+    <div class="mb-5 row">
+        <div class="col">
+            <label for="email_addr">Email address</label>
+            <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email"
+                placeholder="name@example.com">
+        </div>
+        <div class="col">
+            <label for="phone_input">Phone</label>
+            <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone"
+                placeholder="Phone">
+        </div>
+    </div>
+    <div class="mb-5">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary px-4 btn-lg">Post</button>
+</form>
